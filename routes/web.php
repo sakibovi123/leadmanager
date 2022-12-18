@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+
+Route::get("/get-data", [\App\Http\Controllers\FormController::class, "get_form_data"]);
+
+Route::post("/post", [\App\Http\Controllers\FormController::class, "post_json"]);
