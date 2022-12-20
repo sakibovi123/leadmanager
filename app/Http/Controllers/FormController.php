@@ -9,15 +9,16 @@ use Illuminate\Support\Facades\Http;
 class FormController extends Controller
 {
     public function get_form_data(){
-        $forms = Form::paginate(10);
+        $forms = Form::all();
         return response()->json([
-            "status" => true,
+            "status" => "success",
             "data" => $forms
         ], 200);
+        // return response($forms);
 
     }
 
-    public function post_json(Request $request){
+    public function post_json(Request $request) {
         $form = new Form();
 
         $lp_campaign_id = $form->lp_campaign_id = "61c158df57694";

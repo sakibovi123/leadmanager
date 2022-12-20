@@ -1,17 +1,21 @@
 import React from "react";
 import Navbar from "../sections/Navbar";
 import Sidebar from "../sections/Sidebar";
+import MainContent from "../MainContent";
 
 const Main = () => {
     return (
         <>
             <Navbar />
             <br /><br /><br />
-            <div className="container mx-auto h-[100%] w-[100%] border">
+            <div className="flex container mx-auto w-[100%] border">
                 <Sidebar />
 
+                <MainContent />
                 
+
             </div>
+        
         </>
     )
 }
