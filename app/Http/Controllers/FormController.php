@@ -20,8 +20,8 @@ class FormController extends Controller
     public function post_json(Request $request){
         $form = new Form();
 
-        $lp_campaign_id = $form->lp_campaign_id = "asdasd";
-        $lp_campign_key = $form->lp_campaign_key = "asdasd";
+        $lp_campaign_id = $form->lp_campaign_id = "61c158df57694";
+        $lp_campign_key = $form->lp_campaign_key = "MQkGFrhcbtx4BDzq87TP";
         $form->lp_supplier_id = "asdasd";
 
         $fName = $form->first_name = $request->get("first_name");
@@ -58,20 +58,23 @@ class FormController extends Controller
         $cPhone = $form->phone = $request->get($phone);
         $zCode = $form->zip_code = $request->get($zip_code);
 
-        $response = Http::post("https://t.vivint.com/post.do", [
+        $response = Http::post(
+            "https://t.vivint.com/post.do?lp_campaign_id=".$lp_campaign_id."&lp_campaign_key=".$lp_campaign_key."&first_name=".$fName."&last_name=".$lName."&email=".$cCmail."&phone=".$cPhone."&zip_code=".$zCode, []);
 
-            "query" => [
-                "lp_campaign_id" => $lp_campaign_id,
-                "lp_campaign_key" => $lp_campaign_key,
-//            "lp_supplier_id" => "",
-                "first_name" => $fName,
-                "last_name" => $lName,
-                "email" => $cCmail,
-                "phone" => $cPhone,
-                "zip_code" => $zCode,
-                "lp_respose" => "jSON"
-            ]
-        ]);
+//         $response = Http::post("https://t.vivint.com/post.do", [
+
+//             "query" => [
+//                 "lp_campaign_id" => $lp_campaign_id,
+//                 "lp_campaign_key" => $lp_campaign_key,
+// //            "lp_supplier_id" => "",
+//                 "first_name" => $fName,
+//                 "last_name" => $lName,
+//                 "email" => $cCmail,
+//                 "phone" => $cPhone,
+//                 "zip_code" => $zCode,
+//                 "lp_respose" => "jSON"
+//             ]
+//         ]);
 
         return response()->json([
             "status" => "vivint striked",
