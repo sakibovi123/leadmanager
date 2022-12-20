@@ -20,8 +20,8 @@ class FormController extends Controller
     public function post_json(Request $request){
         $form = new Form();
 
-        $form->lp_campaign_id = "asdasd";
-        $form->lp_campaign_key = "asdasd";
+        $lp_campaign_id = $form->lp_campaign_id = "asdasd";
+        $lp_campign_key = $form->lp_campaign_key = "asdasd";
         $form->lp_supplier_id = "asdasd";
 
         $fName = $form->first_name = $request->get("first_name");
@@ -38,18 +38,19 @@ class FormController extends Controller
             "zip_code" => $lZip
         ];
 
-
+        $vivint_response = $this->post_parameter_wise($request, $fName, $lName, $lPhone, $lEmail, $lZip, $lp_campaign_id, $lp_campign_key);
         $form->save();
-        //$this->post_parameter_wise($fName, $lName, $lPhone, $lEmail, $lZip);
+
         return response()->json([
             "status" => "success",
-            "data" => $data
+            "data" => $data,
+            "vivint" => $vivint_response
         ], 201);
 
 
     }
 
-    public function post_parameter_wise(Request $request, $first_name, $last_name, $email, $phone, $zip_code){
+    public function post_parameter_wise(Request $request, $lp_campaign_id, $lp_campaign_key, $first_name, $last_name, $email, $phone, $zip_code){
         $form = new Form();
         $fName = $form->first_name = $request->get($first_name);
         $lName = $form->last_name = $request->get($last_name);
@@ -57,17 +58,24 @@ class FormController extends Controller
         $cPhone = $form->phone = $request->get($phone);
         $zCode = $form->zip_code = $request->get($zip_code);
 
-        $response = Http::post("", [
-            "lp_campaign_id" => "",
-            "lp_campaign_key" => "",
-            "lp_supplier_id" => "",
-            "first_name" => $fName,
-            "last_name" => $lName,
-            "email" => $cCmail,
-            "phone" => $cPhone,
-            "zip_code" => $zCode
+        $response = Http::post("https://t.vivint.com/post.do", [
+
+            "query" => [
+                "lp_campaign_id" => $lp_campaign_id,
+                "lp_campaign_key" => $lp_campaign_key,
+//            "lp_supplier_id" => "",
+                "first_name" => $fName,
+                "last_name" => $lName,
+                "email" => $cCmail,
+                "phone" => $cPhone,
+                "zip_code" => $zCode,
+                "lp_respose" => "jSON"
+            ]
         ]);
 
-        dd($response);
+        return response()->json([
+            "status" => "vivint striked",
+            "response" => $response
+        ], 200);
     }
 }
