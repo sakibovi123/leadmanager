@@ -8,7 +8,7 @@ const MainContent = () => {
 
     let [leads, setLeads] = useState([])
 
-    const url = "http://127.0.0.1:8000/api/data"
+    const url = "https://leadmanager.rayadvertising.com/api/data"
 
     useEffect(() => {
         fetch(url)
@@ -70,7 +70,7 @@ const MainContent = () => {
                             leads?
                             leads.map((lead, index) => {
                                     return (
-                                        <tr className="hover:bg-gray-100 p-3" key={lead.id}>
+                                        <tr className="hover:bg-gray-100 p-3 cursor-pointer" key={lead.id}>
                                             <td className="text-center p-3">{lead.created_at}</td>
                                             <td className="text-center p-3">{lead.first_name}</td>
                                             <td className="text-center p-3">{lead.last_name}</td>

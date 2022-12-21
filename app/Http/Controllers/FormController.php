@@ -82,4 +82,9 @@ class FormController extends Controller
             "response" => $response
         ], 200);
     }
+
+
+    public function email_validation() {
+        
+    }
 }
