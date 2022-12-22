@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 //});
 
 
-Route::get("/data", [\App\Http\Controllers\FormController::class, "get_form_data"]);
-Route::post("/post", [\App\Http\Controllers\FormController::class, "post_json"]);
+Route::get("/data", [\App\Http\Controllers\LeadController::class, "get_form_data"]);
+Route::post("/post", [\App\Http\Controllers\LeadController::class, "post_json"]);
 
-Route::post("/create", [\App\Http\Controllers\FormController::class, "post_parameter_wise"]);
+Route::post("/create", [\App\Http\Controllers\LeadController::class, "post_parameter_wise"]);
 //Route::post("/post/?lp_camapaign_id={lp_campaign_id}&lp_campaign_key={lp_campaign_key}&first_name{first_name}&last_name={last_name}&phone={phone}&email={email}&zip_code={zip_code}");

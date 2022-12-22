@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('forms', function (Blueprint $table) {
+        Schema::create('leads', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->date("created_at");
             $table->string("lp_campaign_id", 560);
             $table->string("lp_campaign_key", 560);
             $table->string("lp_supplier_id", 560)->nullable();
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string("phone", 255);
             $table->string("email", 255);
             $table->string("zip_code", 255)->nullable();
+            $table->boolean("is_valid")->nullable();
         });
     }
 
