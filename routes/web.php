@@ -17,6 +17,5 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-Route::get("/", [\App\Http\Controllers\ViewController::class, "index"]);
-Route::get("/get-data", [\App\Http\Controllers\FormController::class, "get_form_data"]);
-Route::post("/post", [\App\Http\Controllers\FormController::class, "post_json"]);
+Route::get("/{any?}", [\App\Http\Controllers\ViewController::class, "index"])->where("any", ".*");
+

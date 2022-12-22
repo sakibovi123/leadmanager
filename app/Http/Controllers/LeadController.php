@@ -32,21 +32,25 @@ class LeadController extends Controller
         $lEmail = $lead->email = $request->get("email");
         $lZip = $lead->zip_code = $request->get("zip_code");
 
+        $CRMKEY = $lead->campaign_id = $request->get("campaign_id");
+
         $data = [
             "first_name" => $fName,
             "last_name" => $lName,
             "phone" => $lPhone,
             "email" => $lEmail,
-            "zip_code" => $lZip
+            "zip_code" => $lZip,
+            "crm_key" => $CRMKEY
         ];
 
-        $vivint_response = $this->post_parameter_wise($request, $fName, $lName, $lPhone, $lEmail, $lZip, $lp_campaign_id, $lp_campign_key);
+        //$vivint_response = $this->post_parameter_wise($request, $fName, $lName, $lPhone, $lEmail, $lZip, $lp_campaign_id, $lp_campign_key);
         $lead->save();
+
 
         return response()->json([
             "status" => "success",
             "data" => $data,
-            "vivint" => $vivint_response
+            //"vivint" => $vivint_response
         ], 201);
 
 

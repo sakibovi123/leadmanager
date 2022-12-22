@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Campaign extends Model
 {
     use HasFactory;
+
+    protected $table = "campaigns";
+
+    protected $fillable = [ "campaign_title" ];
+
+    public function lead(){
+        return $this->hasMany(Lead::class);
+    }
 }
