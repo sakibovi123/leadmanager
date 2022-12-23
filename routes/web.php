@@ -17,5 +17,13 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-Route::get("/{any?}", [\App\Http\Controllers\ViewController::class, "index"])->where("any", ".*");
+Route::get("/", [\App\Http\Controllers\ViewController::class, "index"]);
+
+// Campaigns Routes
+Route::get("/campaigns", [\App\Http\Controllers\CampaignController::class, "index"])->name("campaigns");
+Route::post("/create-campaign", [\App\Http\Controllers\CampaignController::class, "store"])->name("create-campaign");
+Route::delete("/delete-campaign/{id}/", [\App\Http\Controllers\CampaignController::class, "remove"])->name("remove-campaign");
+
+// leads routes
+Route::get("/leads", [\App\Http\Controllers\LeadController::class, 'leads'])->name("leads");
 

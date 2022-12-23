@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Http;
 
 class LeadController extends Controller
 {
+
+    public function leads(){
+        return view("leads.leads", []);
+    }
+
     public function get_form_data(){
         $leads = Lead::all();
 
