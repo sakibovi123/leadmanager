@@ -14,10 +14,16 @@ class CampaignController extends Controller
         ]);
     }
 
-    public function create(){
-        return view("campaigns.create");
-    }
 
+    // details and edit
+
+    public function details($id){
+        $camp = Campaign::find($id);
+
+        return view("campaign.details", [
+            "camp" => $camp
+        ]);
+    }
 
     // storing campaigns to the database
 
