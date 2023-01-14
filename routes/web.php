@@ -25,6 +25,14 @@ Route::post("/create-campaign", [\App\Http\Controllers\CampaignController::class
 Route::delete("/delete-campaign/{id}", [\App\Http\Controllers\CampaignController::class, "remove"])->name("remove-campaign");
 Route::get("/campaign-details/{id}", [\App\Http\Controllers\CampaignController::class, 'details'])->name("campaign-details");
 
+// clinet urls
+Route::get("/clients", [\App\Http\Controllers\ClientController::class, "index"])->name("clients");
+Route::get("/create-clients", [\App\Http\Controllers\ClientController::class, "create"])->name("create-client");
+Route::post("/save-client", [\App\Http\Controllers\ClientController::class, "save"])->name("save-client");
+Route::get("/edit-client/{client_id}", [\App\Http\Controllers\ClientController::class, "edit"])->name("edit-client");
+Route::put("/update-client/{client_id}", [\App\Http\Controllers\ClientController::class, "update"])->name("update-client");
+Route::delete("/delete-client/{client_id}", [\App\Http\Controllers\ClientController::class, "remove"])->name("remove-client");
+
 // leads routes
 Route::get("/leads", [\App\Http\Controllers\LeadController::class, 'leads'])->name("leads");
 
