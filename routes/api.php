@@ -27,3 +27,7 @@ Route::post("/create", [\App\Http\Controllers\LeadController::class, "post_param
 // camplejune post url
 Route::post("/post-legal", [\App\Http\Controllers\CampLejuneController::class, "post"]);
 //Route::post("/post/?lp_camapaign_id={lp_campaign_id}&lp_campaign_key={lp_campaign_key}&first_name{first_name}&last_name={last_name}&phone={phone}&email={email}&zip_code={zip_code}");
+
+
+// mva exchange api post url
+Route::post("/post-mva", [\App\Http\Controllers\Leads\MVAExchangeController::class, "send_data"]);
