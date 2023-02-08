@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CampLejeune;
 use App\Models\Lead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -10,7 +11,10 @@ class LeadController extends Controller
 {
 
     public function leads(){
-        return view("leads.leads", []);
+        $camps = CampLejeune::all();
+        return view("leads.leads", [
+            "camps" => $camps
+        ]);
     }
 
     public function get_form_data(){

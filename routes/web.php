@@ -25,7 +25,7 @@ Route::post("/create-campaign", [\App\Http\Controllers\CampaignController::class
 Route::delete("/delete-campaign/{id}", [\App\Http\Controllers\CampaignController::class, "remove"])->name("remove-campaign");
 Route::get("/campaign-details/{id}", [\App\Http\Controllers\CampaignController::class, 'details'])->name("campaign-details");
 
-// clinet urls
+// client urls
 Route::get("/clients", [\App\Http\Controllers\ClientController::class, "index"])->name("clients");
 Route::get("/create-clients", [\App\Http\Controllers\ClientController::class, "create"])->name("create-client");
 Route::post("/save-client", [\App\Http\Controllers\ClientController::class, "save"])->name("save-client");

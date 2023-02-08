@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Http;
 class MVAExchangeController extends Controller
 {
     // mva exchange legal justice controller function
-
-
     public function send_data(Request $request)
     {
 
@@ -46,7 +44,8 @@ class MVAExchangeController extends Controller
                 "case_description" => $case_description,
                 "ip_address" => $ip_address,
                 "user_agent" => $user_agent,
-                "landing_page" => $landing_page
+                "landing_page" => $landing_page,
+
             ]);
 
             if( $response->getStatusCode() == 200 )

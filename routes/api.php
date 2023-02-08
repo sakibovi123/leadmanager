@@ -31,3 +31,6 @@ Route::post("/post-legal", [\App\Http\Controllers\CampLejuneController::class, "
 
 // mva exchange api post url
 Route::post("/post-mva", [\App\Http\Controllers\Leads\MVAExchangeController::class, "send_data"]);
+
+// ERC API
+Route::post("/post-erc", [\App\Http\Controllers\Leads\ERCController::class, "send_data_to_erc"]);
