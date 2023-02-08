@@ -17,91 +17,11 @@ class CampLejuneController extends Controller
     public function index()
     {
         $camps = CampLejeune::all();
-        return view("leads.leads", [
+        return view("Camp.camps", [
             "camps" => $camps
         ]);
     }
 
-//    function post(Request $request){
-//        // vars for checking the form to send post request to client or no
-//
-//        $is_loved = $request->get("is_loved");
-//        $have_attorney = $request->get("have_attorney");
-//        $first_name = $request->get("first_name");
-//        $last_name = $request->get("last_name");
-//        $email = $request->get("email");
-//        $phone = $request->get("phone");
-//        $address = $request->get("address");
-//        $city = $request->get("city");
-//        $state = $request->get("state");
-//        $zip_code = $request->get("zip_code");
-//        $ip_address = $request->ip();
-//
-//        // contact details
-//        $type_of_legal_problem = $request->get("type_of_legal_problem");
-//
-//
-//        $body = [
-//            "contact" => [
-//                "first_name" => $first_name,
-//                "last_name" => $last_name,
-//                "email" => $email,
-//                "phone" => $phone,
-//                "address" => $address,
-//                "city" => $city,
-//                "state" => $state,
-//                "zip_code" => $zip_code,
-//                "ip_address" => $ip_address
-//            ],
-//            "data" => [
-//                "type_of_legal_problem" => "Camp Lejeune"
-//            ]
-//        ];
-//        if( $is_loved == "yes" || $is_loved == "Yes" && $have_attorney == "no" || $have_attorney == "No" )
-//        {
-//
-//            if( $type_of_legal_problem != "no injury" && $type_of_legal_problem != "No Injury" )
-//            {
-//
-//                $response = Http::withHeaders(["Authorization" => "Token 9680475e0e29d5a379ce183635129c6871f28cbe"])
-//                    ->post("https://test-api.jangl.com/v2/legal/capture", $body);
-//
-//                if( $response->getStatusCode() == 200 )
-//                {
-//                    return response()->json([
-//                        "Success" => "True",
-//                        "Status" => $response->getStatusCode(),
-//                        "DB_STATUS" => "Saved",
-//                        "body" => $body
-//                    ]);
-//                }
-//                else
-//                {
-//                    return response()->json([
-//                        "Success" => "False",
-//                        "Status" => $response->getStatusCode(),
-//                        "DB_STATUS" => "Failed"
-//                    ]);
-//                }
-//            }
-//            else
-//            {
-//                return response()->json([
-//                    "message" => "Sorry you are not eligible for this offer"
-//                ]);
-//            }
-//
-//        }
-//
-//        else{
-//            return response()->json([
-//                "message" => "Sorry you are not eligible for this offer"
-//            ]);
-//        }
-//
-//
-//        // echo $response->getStatusCode();
-//    }
 
     public function post(Request $request){
         // vars for checking the form to send post request to client or no
@@ -119,7 +39,6 @@ class CampLejuneController extends Controller
 
         $is_loved = $request->get("is_loved");
         $have_attorney = $request->get("have_attorney");
-
         $first_name = $request->get("first_name");
         $last_name = $request->get("last_name");
         $email = $request->get("email");
@@ -132,8 +51,6 @@ class CampLejuneController extends Controller
 
         // contact details
         $type_of_legal_problem = $request->get("type_of_legal_problem");
-
-
         $body = [
             "contact" => [
                 "first_name" => $first_name,
@@ -198,6 +115,7 @@ class CampLejuneController extends Controller
                 }
                 else
                 {
+
                     return response()->json([
                         "message" => "Sorry you are not eligible for this offer"
                     ]);
@@ -225,17 +143,35 @@ class CampLejuneController extends Controller
     public function edit($id)
     {
         $camp_lejeune = CampLejeune::find($id);
-        return view();
+        return view("Camp.camp_edit", [
+            "camp_lejeune" => $camp_lejeune
+        ]);
     }
 
     public function update(Request $request, $id)
     {
+        $camp_lejeune = CampLejeune::find($id);
+        $camp_lejeune->first_name = $request->get("first_name");
+        $camp_lejeune->last_name = $request->get("last_name");
+        $camp_lejeune->phone = $request->get("phone");
+        $camp_lejeune->email = $request->get("email");
+        $camp_lejeune->address = $request->get("address");
+        $camp_lejeune->city = $request->get("city");
+        $camp_lejeune->state = $request->get("state");
+        $camp_lejeune->zip_code = $request->get("zip_code");
+        $camp_lejeune->ip_address = $request->ip();
+        $camp_lejeune->type_of_legal_problem = $request->get("type_of_legal_problem");
 
+        $camp_lejeune->save();
+
+        return back()->with("message", "Updated!");
     }
 
     // delete camp leads
-    public function remove()
+    public function remove($id)
     {
-
+        $camp = CampLejeune::find($id);
+        $camp->delete();
+        return back()->with("message", "deleted!");
     }
 }

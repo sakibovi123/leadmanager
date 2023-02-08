@@ -36,3 +36,10 @@ Route::delete("/delete-client/{client_id}", [\App\Http\Controllers\ClientControl
 // leads routes
 Route::get("/leads", [\App\Http\Controllers\LeadController::class, 'leads'])->name("leads");
 
+// Camp lejeunes leads lists
+Route::get("/camp-leads", [\App\Http\Controllers\CampLejuneController::class, "index"])->name("camplejeune");
+Route::post("/create-camp-lead", [\App\Http\Controllers\CampLejuneController::class, "post"])->name("post-camplejeune");
+Route::get("/edit-camp/{id}", [\App\Http\Controllers\CampLejuneController::class, "edit"])->name("edit-camp-lejeune");
+Route::put("/update-camp-lejeune/{id}", [\App\Http\Controllers\CampLejuneController::class, "update"])->name("update-camp-lejeune");
+Route::delete("/delete-camp-lejeune/{id}", [\App\Http\Controllers\CampLejuneController::class, "remove"])->name("delete-camp-lead");
+

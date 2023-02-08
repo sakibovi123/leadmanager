@@ -11,9 +11,9 @@ class LeadController extends Controller
 {
 
     public function leads(){
-        $camps = CampLejeune::all();
+
         return view("leads.leads", [
-            "camps" => $camps
+
         ]);
     }
 

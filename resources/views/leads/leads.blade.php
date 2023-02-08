@@ -94,68 +94,68 @@
             </thead>
 
             <tbody>
-            @if($camps->count() > 0)
-                @foreach($camps as $camp)
-                    <tr class="bg-white hover:bg-gray-100 cursor-pointer border-b-2">
-                        <td class="text-center text-sm font-semibold">{{ $camp->created_at }}</td>
-                        <td class="text-center text-sm font-semibold">{{ $camp->first_name }}</td>
-                        <td class="text-center text-sm font-semibold">{{ $camp->last_name }}</td>
-                        <td class="text-center text-sm font-semibold">
-                            @if(!empty($camp->email))
-                                {{ $camp->email }}
-                            @else
-                                --
-                            @endif
-                        </td>
-                        <td class="text-center text-sm font-semibold">
-                            @if(!empty($camp->phone))
-                                {{ $camp->phone }}
-                            @else
-                                --
-                            @endif
-                        </td>
-                        <td class="text-center text-sm font-semibold">{{ $camp->type_of_legal_problem }}</td>
-                        <td class="text-center text-sm font-semibold">{{ $camp->is_valid }}</td>
-                        <td class="text-center text-sm font-semi-bold">
+{{--            @if($camps->count() > 0)--}}
+{{--                @foreach($camps as $camp)--}}
+{{--                    <tr class="bg-white hover:bg-gray-100 cursor-pointer border-b-2">--}}
+{{--                        <td class="text-center text-sm font-semibold">{{ $camp->created_at }}</td>--}}
+{{--                        <td class="text-center text-sm font-semibold">{{ $camp->first_name }}</td>--}}
+{{--                        <td class="text-center text-sm font-semibold">{{ $camp->last_name }}</td>--}}
+{{--                        <td class="text-center text-sm font-semibold">--}}
+{{--                            @if(!empty($camp->email))--}}
+{{--                                {{ $camp->email }}--}}
+{{--                            @else--}}
+{{--                                ----}}
+{{--                            @endif--}}
+{{--                        </td>--}}
+{{--                        <td class="text-center text-sm font-semibold">--}}
+{{--                            @if(!empty($camp->phone))--}}
+{{--                                {{ $camp->phone }}--}}
+{{--                            @else--}}
+{{--                                ----}}
+{{--                            @endif--}}
+{{--                        </td>--}}
+{{--                        <td class="text-center text-sm font-semibold">{{ $camp->type_of_legal_problem }}</td>--}}
+{{--                        <td class="text-center text-sm font-semibold">{{ $camp->is_valid }}</td>--}}
+{{--                        <td class="text-center text-sm font-semi-bold">--}}
 
-                            <div class="flex items-center justify-center">
-                                <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">
-                                    <i class="fa fa-cog text-sm font-semibold text-black hover:text-blue-600" aria-hidden="true"></i>
-                                </button>
-                                <form method="POST" action="">
-                                    @csrf
-                                    @method("DELETE")
-                                    <button class="text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="submit">
-                                        <i class="fa fa-trash text-sm font-semibold text-black hover:text-red-600" aria-hidden="true"></i>
-                                    </button>
-                                </form>
-                            </div>
-                            <!-- Dropdown menu -->
-                            <div id="dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
-                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
-                                    <li>
-                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Leads</a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Details</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buyers</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Suppliers</a>
-                                    </li>
-                                </ul>
-                            </div>
+{{--                            <div class="flex items-center justify-center">--}}
+{{--                                <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">--}}
+{{--                                    <i class="fa fa-cog text-sm font-semibold text-black hover:text-blue-600" aria-hidden="true"></i>--}}
+{{--                                </button>--}}
+{{--                                <form method="POST" action="">--}}
+{{--                                    @csrf--}}
+{{--                                    @method("DELETE")--}}
+{{--                                    <button class="text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="submit">--}}
+{{--                                        <i class="fa fa-trash text-sm font-semibold text-black hover:text-red-600" aria-hidden="true"></i>--}}
+{{--                                    </button>--}}
+{{--                                </form>--}}
+{{--                            </div>--}}
+{{--                            <!-- Dropdown menu -->--}}
+{{--                            <div id="dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">--}}
+{{--                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">--}}
+{{--                                    <li>--}}
+{{--                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Leads</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li>--}}
+{{--                                        <a href="" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Details</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li>--}}
+{{--                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li>--}}
+{{--                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buyers</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li>--}}
+{{--                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Suppliers</a>--}}
+{{--                                    </li>--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
 
-                        </td>
-                    </tr>
+{{--                        </td>--}}
+{{--                    </tr>--}}
 
-                @endforeach
-            @endif
+{{--                @endforeach--}}
+{{--            @endif--}}
             </tbody>
 
         </table>
