@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string("campaign_title", 256);
+            $table->string("campaign_uid", 255);
 
         });
     }

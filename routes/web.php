@@ -21,10 +21,12 @@ Route::get("/", [\App\Http\Controllers\ViewController::class, "index"]);
 
 // Campaigns Routes
 Route::get("/campaigns", [\App\Http\Controllers\CampaignController::class, "index"])->name("campaigns");
-Route::post("/create-campaign", [\App\Http\Controllers\CampaignController::class, "store"])->name("create-campaign");
+Route::get("/create-campaign-template", [\App\Http\Controllers\CampaignController::class, "create_campaign"])->name("create-campaign");
+Route::post("/store-campaign", [\App\Http\Controllers\CampaignController::class, "store"])->name("store-campaign");
 Route::delete("/delete-campaign/{id}", [\App\Http\Controllers\CampaignController::class, "remove"])->name("remove-campaign");
-Route::get("/campaign-details/{id}", [\App\Http\Controllers\CampaignController::class, 'details'])->name("campaign-details");
-
+Route::get("/campaign-details/{campaign_uid}", [\App\Http\Controllers\CampaignController::class, 'details'])->name("campaign-details");
+Route::post("/add-field-to-campaign/{campaign_uid}", [\App\Http\Controllers\CampaignController::class, "add_fields_to_campaigns"])->name("add_fields");
+Route::delete("/delete-field", [\App\Http\Controllers\CampaignController::class, "remove_field"]);
 // client urls
 Route::get("/clients", [\App\Http\Controllers\ClientController::class, "index"])->name("clients");
 Route::get("/create-clients", [\App\Http\Controllers\ClientController::class, "create"])->name("create-client");
@@ -43,3 +45,10 @@ Route::get("/edit-camp/{id}", [\App\Http\Controllers\CampLejuneController::class
 Route::put("/update-camp-lejeune/{id}", [\App\Http\Controllers\CampLejuneController::class, "update"])->name("update-camp-lejeune");
 Route::delete("/delete-camp-lejeune/{id}", [\App\Http\Controllers\CampLejuneController::class, "remove"])->name("delete-camp-lead");
 
+// test lead routes
+Route::get("/test-lead/{campaign_id}", [\App\Http\Controllers\TestLeadController::class, "index"]);
+Route::post("/send-test-lead/{campaign_id}", [\App\Http\Controllers\TestLeadController::class, "send_test_lead"]);
+
+
+// Leads routes
+Route::get("/leads", [\App\Http\Controllers\LeadController::class, "leads"]);

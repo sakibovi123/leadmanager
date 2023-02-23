@@ -13,6 +13,11 @@ class Campaign extends Model
 
     protected $fillable = [ "campaign_title" ];
 
+    public function fields()
+    {
+        return $this->hasMany(Field::class);
+    }
+
     public function lead(){
         return $this->hasMany(Lead::class);
     }

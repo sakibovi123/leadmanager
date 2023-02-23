@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Interface\LeadInterface;
 use App\Models\CampLejeune;
 use App\Models\Lead;
 use Illuminate\Http\Request;
@@ -9,11 +10,18 @@ use Illuminate\Support\Facades\Http;
 
 class LeadController extends Controller
 {
+    private $leadInterface;
 
-    public function leads(){
+    public function __construct(LeadInterface $leadInterface)
+    {
+        $this->leadInterface = $leadInterface;
+    }
 
+    public function leads()
+    {
+        $leads = $this->leadInterface->show_all_leads();
         return view("leads.leads", [
-
+            "leads" => $leads
         ]);
     }
 

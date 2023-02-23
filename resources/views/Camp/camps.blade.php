@@ -151,9 +151,7 @@
                         <td class="text-center text-sm font-semi-bold">
 
                             <div class="flex items-center justify-center">
-                                <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">
-                                    <i class="fa fa-cog text-sm font-semibold text-black hover:text-blue-600" aria-hidden="true"></i>
-                                </button>
+                                <a href="">Setup</a>
                                 <form method="POST" action="{{ url('/delete-camp-lejeune/'.$camp->id) }}">
                                     @csrf
                                     @method("DELETE")

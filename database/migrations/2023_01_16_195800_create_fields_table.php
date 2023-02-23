@@ -16,6 +16,12 @@ return new class extends Migration
         Schema::create('fields', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
+            $table->string("field_name", 255);
+            $table->string("field_type", 255);
+            $table->boolean("is_required")->default(1);
+
+            $table->foreignIdFor(\App\Models\Campaign::class)->nullable();
         });
     }
 

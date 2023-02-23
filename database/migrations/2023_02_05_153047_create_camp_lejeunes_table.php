@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string("phone", 1000);
             $table->string("address", 1000);
             $table->string("city", 1000);
-            $table->string("state", 1000);
+            $table->string("state", 1000)->nullable();
             $table->string("zip_code", 1000);
             $table->string("ip_address", 1000);
             $table->string("type_of_legal_problem", 1000);

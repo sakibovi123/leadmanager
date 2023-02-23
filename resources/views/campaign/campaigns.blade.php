@@ -18,12 +18,16 @@
             </form>
             <div class="text-white">....</div>
 
-   
+
             <!-- Modal toggle -->
-            <button class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" data-modal-toggle="authentication-modal">
+            <a href="{{ url("/create-campaign-template") }}"
+               class="block text-white bg-blue-700 hover:bg-blue-800
+                focus:ring-4 focus:outline-none focus:ring-blue-300
+                 font-medium rounded-lg text-sm px-5 py-2.5 text-center
+                  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 + New
-             </button>
-  
+             </a>
+
             <!-- Main modal -->
             <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
                 <div class="relative w-full h-full max-w-md md:h-auto">
@@ -46,19 +50,19 @@
                                     <label for="campaign_title" class="block mb-2 text-sm font-medium text-gray-900">Enter campaign title</label>
                                     <input type="text" name="campaign_title" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-500 " placeholder="" required>
                                 </div>
-                               
-                        
+
+
                                 <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
-                                
+
                             </form>
                         </div>
                     </div>
                 </div>
-            </div> 
-  
+            </div>
+
 
             </div>
-        
+
     </div>
     <table class="w-[1400px] border-2 p-5 table-auto shadow-xl rounded-xl py-4">
         <thead>
@@ -67,7 +71,7 @@
                 <th class="text-md p-3">Strike Date</th>
                 <th class="text-md p-3">Campaign</th>
                 <th class="text-md p-3" colspan="2">Actions</th>
-                
+
             </tr>
         </thead>
         <tbody>
@@ -80,9 +84,10 @@
                 <td class="text-center p-3 text-sm font-semibold">
 
                 <div class="flex items-center justify-center">
-                    <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">
-                        <i class="fa fa-cog text-xl font-semibold text-black hover:text-blue-600" aria-hidden="true"></i>
-                    </button>
+{{--                    <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">--}}
+{{--                        <i class="fa fa-cog text-xl font-semibold text-black hover:text-blue-600" aria-hidden="true"></i>--}}
+{{--                    </button>--}}
+                    <a href="{{ url('/campaign-details/'.$camp->campaign_uid) }}">Setup</a>
                     <form method="POST" action="{{ url('/delete-campaign/'.$camp->id) }}">
                         @csrf
                         @method("DELETE")
@@ -98,10 +103,12 @@
                         <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Leads</a>
                     </li>
                     <li>
-                        <a href="{{ url('/campaign-details/'.$camp->id) }}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Details</a>
+                        <a href="{{ url('/campaign-details/'.$camp->campaign_uid) }}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            Details
+                        </a>
                     </li>
                     <li>
-                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                        <a href="{{ url('/campaign-details/'.$camp->uid) }}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                     </li>
                     <li>
                         <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buyers</a>
@@ -117,7 +124,7 @@
                          stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round"
                          strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                     </button>
-                    
+
                     <a href="" class="hover:text-blue-500">Edit</a>
                     <form method="DELETE" action="">
                         @csrf
@@ -129,7 +136,7 @@
             @endforeach
             @endif
         </tbody>
-      
+
     </table>
 </div>
 </div>

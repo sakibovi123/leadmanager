@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('leads', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string("lead_uid", 255);
+            $table->foreignIdFor(\App\Models\Campaign::class);
+            $table->string("payload", 1000);
         });
     }
 
