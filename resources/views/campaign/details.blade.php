@@ -10,7 +10,7 @@
                 <div class="flex items-center justify-center">
                     <a href="" class="border p-1.5 rounded hover:bg-gray-200">Supplier API docs</a>
                     <a href="{{ url("/test-lead/".$camp->id) }}" class="border p-1.5 rounded hover:bg-gray-200 mx-2">Test Lead</a>
-                    <a href="" class="px-3">All campaigns</a>
+                    <a href="{{ route('campaigns') }}" class="border p-1.5 rounded hover:bg-gray-200 mx-2">Back To campaigns</a>
                 </div>
 
             </div>

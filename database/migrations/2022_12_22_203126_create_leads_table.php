@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string("lead_uid", 255);
             $table->foreignIdFor(\App\Models\Campaign::class);
-            $table->string("payload", 1000);
+            $table->json("payload")->nullable();
         });
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Interface\TestLeadInterface;
 use App\Models\Campaign;
 use App\Models\Field;
+use App\Models\Lead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -36,6 +37,11 @@ class TestLeadController extends Controller
 
         $body = $fields;
         $response = Http::post("https://hooks.zapier.com/hooks/catch/13844305/b7dn9h8/", $body);
+        $lead = new Lead();
+        $lead->lead_uid = uniqid();
+        $lead->campaign_id = $camp->id;
+        $lead->payload = json_encode($fields);
+        $lead->save();
 
         return $response;
     }

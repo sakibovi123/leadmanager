@@ -27,6 +27,7 @@ Route::delete("/delete-campaign/{id}", [\App\Http\Controllers\CampaignController
 Route::get("/campaign-details/{campaign_uid}", [\App\Http\Controllers\CampaignController::class, 'details'])->name("campaign-details");
 Route::post("/add-field-to-campaign/{campaign_uid}", [\App\Http\Controllers\CampaignController::class, "add_fields_to_campaigns"])->name("add_fields");
 Route::delete("/delete-field", [\App\Http\Controllers\CampaignController::class, "remove_field"]);
+
 // client urls
 Route::get("/clients", [\App\Http\Controllers\ClientController::class, "index"])->name("clients");
 Route::get("/create-clients", [\App\Http\Controllers\ClientController::class, "create"])->name("create-client");
@@ -35,8 +36,6 @@ Route::get("/edit-client/{client_id}", [\App\Http\Controllers\ClientController::
 Route::put("/update-client/{client_id}", [\App\Http\Controllers\ClientController::class, "update"])->name("update-client");
 Route::delete("/delete-client/{client_id}", [\App\Http\Controllers\ClientController::class, "remove"])->name("remove-client");
 
-// leads routes
-Route::get("/leads", [\App\Http\Controllers\LeadController::class, 'leads'])->name("leads");
 
 // Camp lejeunes leads lists
 Route::get("/camp-leads", [\App\Http\Controllers\CampLejuneController::class, "index"])->name("camplejeune");
@@ -51,4 +50,6 @@ Route::post("/send-test-lead/{campaign_id}", [\App\Http\Controllers\TestLeadCont
 
 
 // Leads routes
-Route::get("/leads", [\App\Http\Controllers\LeadController::class, "leads"]);
+Route::get("/leads", [\App\Http\Controllers\LeadController::class, "leads"])->name("all_leads");
+Route::get("/filter-by-campaign/{campaign_id}", [\App\Http\Controllers\LeadController::class, "filter_by_campaign"])
+    ->name("filter_by_campaign");

@@ -1,5 +1,5 @@
 @include("base")
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <div class="container mx-auto flex">
     @include("sidebar")
     <br>
@@ -9,12 +9,11 @@
             <hr>
             <div class="flex items-center justify-around">
                 <form class="flex items-center justify-between">
-                    <select id="countries" class="font-mono font-semibold bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select id="leads" name="lead_filter" class="font-mono font-semibold bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected>Filter</option>
-                        <option value="US">United States</option>
-                        <option value="CA">Canada</option>
-                        <option value="FR">France</option>
-                        <option value="DE">Germany</option>
+                        @foreach($campaigns as $camp)
+                            <option value="{{ $camp->id }}">{{ $camp->campaign_title }}</option>
+                        @endforeach
                     </select>
                     <button type="submit" class="text-center px-7 w-[50px]"><i class="fa fa-filter"></i></button>
                 </form>
@@ -94,70 +93,35 @@
             </thead>
 
             <tbody>
-{{--            @if($camps->count() > 0)--}}
-{{--                @foreach($camps as $camp)--}}
-{{--                    <tr class="bg-white hover:bg-gray-100 cursor-pointer border-b-2">--}}
-{{--                        <td class="text-center text-sm font-semibold">{{ $camp->created_at }}</td>--}}
-{{--                        <td class="text-center text-sm font-semibold">{{ $camp->first_name }}</td>--}}
-{{--                        <td class="text-center text-sm font-semibold">{{ $camp->last_name }}</td>--}}
-{{--                        <td class="text-center text-sm font-semibold">--}}
-{{--                            @if(!empty($camp->email))--}}
-{{--                                {{ $camp->email }}--}}
-{{--                            @else--}}
-{{--                                ----}}
-{{--                            @endif--}}
-{{--                        </td>--}}
-{{--                        <td class="text-center text-sm font-semibold">--}}
-{{--                            @if(!empty($camp->phone))--}}
-{{--                                {{ $camp->phone }}--}}
-{{--                            @else--}}
-{{--                                ----}}
-{{--                            @endif--}}
-{{--                        </td>--}}
-{{--                        <td class="text-center text-sm font-semibold">{{ $camp->type_of_legal_problem }}</td>--}}
-{{--                        <td class="text-center text-sm font-semibold">{{ $camp->is_valid }}</td>--}}
-{{--                        <td class="text-center text-sm font-semi-bold">--}}
+            @if($leads->count() > 0)
+                @foreach($leads as $lead)
+                    <tr class="bg-white hover:bg-gray-100 cursor-pointer border-b-2">
+                        <td class="text-center text-sm font-semibold p-2">{{ $lead->created_at }}</td>
+                        <td class="text-center text-sm font-semibold">{{ $lead->lead_uid }}</td>
+                        <td class="text-center text-sm font-semibold">--</td>
+                        <td class="text-center text-sm font-semibold">--</td>
 
-{{--                            <div class="flex items-center justify-center">--}}
-{{--                                <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">--}}
-{{--                                    <i class="fa fa-cog text-sm font-semibold text-black hover:text-blue-600" aria-hidden="true"></i>--}}
-{{--                                </button>--}}
-{{--                                <form method="POST" action="">--}}
-{{--                                    @csrf--}}
-{{--                                    @method("DELETE")--}}
-{{--                                    <button class="text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="submit">--}}
-{{--                                        <i class="fa fa-trash text-sm font-semibold text-black hover:text-red-600" aria-hidden="true"></i>--}}
-{{--                                    </button>--}}
-{{--                                </form>--}}
-{{--                            </div>--}}
-{{--                            <!-- Dropdown menu -->--}}
-{{--                            <div id="dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">--}}
-{{--                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">--}}
-{{--                                    <li>--}}
-{{--                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Leads</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li>--}}
-{{--                                        <a href="" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Details</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li>--}}
-{{--                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li>--}}
-{{--                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buyers</a>--}}
-{{--                                    </li>--}}
-{{--                                    <li>--}}
-{{--                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Suppliers</a>--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
+                    </tr>
 
-{{--                        </td>--}}
-{{--                    </tr>--}}
-
-{{--                @endforeach--}}
-{{--            @endif--}}
+                @endforeach
+            @endif
             </tbody>
 
         </table>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#leads").on("change", function(){
+            var leads = $(this).val();
+            $.ajax({
+                url: "{{ url('/leads') }}",
+                type: "GET",
+                data: {'leads': leads},
+                success: function(data){
+                    console.log(data)
+                }
+            })
+        })
+    })
+</script>
